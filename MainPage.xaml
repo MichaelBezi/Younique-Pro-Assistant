@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Younique_Pro_Assistant.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:SqlClient="clr-namespace:Microsoft.Data.SqlClient;assembly=Microsoft.Data.SqlClient"
+    Title="Younique Ultimate Management System"
+    Loaded="ContentPage_Loaded"
+    NavigationPage.HasBackButton="False">
+    <ScrollView HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always">
+        <Grid>
+            <Image HeightRequest="200" Source="\pics\dev.png" />
+            <VerticalStackLayout>
+                <HorizontalStackLayout
+                    HorizontalOptions="End"
+                    IsVisible="true"
+                    Spacing="8">
+                    <Label Text="Theme" VerticalTextAlignment="Center" />
+                    <RadioButton
+                        x:Name="lightThemeRadioButton"
+                        CheckedChanged="lightThemeRadioButton_CheckedChanged"
+                        Content="Light"
+                        GroupName="theme"
+                        MinimumWidthRequest="80" />
+                    <RadioButton
+                        x:Name="darkThemeRadioButton"
+                        CheckedChanged="darkThemeRadioButton_CheckedChanged"
+                        Content="Dark"
+                        GroupName="theme"
+                        MinimumWidthRequest="80" />
+                </HorizontalStackLayout>
+                <VerticalStackLayout
+                    x:Name="gdlog"
+                    Padding="10,0"
+                    Spacing="10"
+                    VerticalOptions="Center">
+                    <!--  Login UI  -->
+                    <StackLayout>
+                        <Grid>
+                            <Image
+                                HeightRequest="100"
+                                HorizontalOptions="Center"
+                                Source="younique_square.png" />
+                        </Grid>
+                    </StackLayout>
+                    <Label
+                        x:Name="lbltitle"
+                        FontSize="14"
+                        HorizontalOptions="Center"
+                        SemanticProperties.Description="Welcome to Younique Technology"
+                        SemanticProperties.HeadingLevel="Level3"
+                        Text="Login" />
+                    <StackLayout Padding="10,0">
+                    <StackLayout Padding="20,0" Spacing="10">
+                        <Label Text="E-mail Address*"/>
+                        <Entry
+     x:Name="txtuser"
+     ClearButtonVisibility="WhileEditing"
+     Keyboard="Email"
+     Placeholder="Email Address" />
+                        <Label Text="Password*"/>
+                        <Entry
+     x:Name="txtpword"
+     IsPassword="True"
+     Placeholder="Password"
+     SemanticProperties.Description="Password comes here">
+                            <Entry.Triggers>
+                                <DataTrigger
+             Binding="{Binding IsChecked, Source={Reference Name=chkpword}}"
+             TargetType="{Type Entry}"
+             Value="true">
+                                    <Setter Property="IsPassword" Value="false" />
+                                </DataTrigger>
+                            </Entry.Triggers>
+                        </Entry>
+                    </StackLayout>
+                    </StackLayout>
+                    <StackLayout Padding="10,0" Spacing="10">
+                        <StackLayout>
+                            <Grid>
+                                <Label HorizontalTextAlignment="Start" 
+                                       Text="                     Show password" VerticalTextAlignment="Center"/>
+                                <StackLayout Padding="20,0">
+                                    <CheckBox x:Name="chkpword" HorizontalOptions="Start" />
+                                </StackLayout>
+                                <StackLayout Padding="20,0">
+                                    <Image
+                                x:Name="piclogload"
+                                HorizontalOptions="End"
+                                IsAnimationPlaying="False"
+                                MaximumHeightRequest="30"
+                                MaximumWidthRequest="30"
+                                Source="load.jpg" />
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                        <StackLayout
+                            x:Name="gdsign"
+                            Padding="20,0"
+                            Spacing="10">
+                            <!--  Signup ui controls  -->
+                            <Label Text="Confirm Password*"/>
+                            <Entry
+                                x:Name="txtcp"
+                                IsPassword="True"
+                                Placeholder="Confirm Password">
+                                <Entry.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding IsChecked, Source={Reference Name=chkpword}}"
+                                        TargetType="{Type Entry}"
+                                        Value="true">
+                                        <Setter Property="IsPassword" Value="false" />
+                                    </DataTrigger>
+                                </Entry.Triggers>
+                            </Entry>
+                            <StackLayout
+                                Padding="0,0"
+                                Orientation="Vertical"
+                                Spacing="10">
+                                <Label Text="Full Name*"/>
+                                <Entry x:Name="txtlogfname" Placeholder="Full Name" />
+                                <Label Text="Phone No.*"/>
+                                <Entry
+                                    x:Name="txtlogphone"
+                                    IsTextPredictionEnabled="True"
+                                    Keyboard="Telephone"
+                                    Placeholder="Phone No." />
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                    <StackLayout Padding="30,0" Spacing="10">
+                        <Button
+    x:Name="btnlog"
+    Clicked="login_click"
+    SemanticProperties.Hint="To login / Signup"
+    Text="Login" />
+                        <Button
+    x:Name="btnreg"
+    Clicked="logclear"
+    Text="Don't have an account? Signup..." />
+                    </StackLayout>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>

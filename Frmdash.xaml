@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="Younique_Pro_Assistant.Frmdash"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+    xmlns:local="clr-namespace:Younique_Pro_Assistant"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="ContentPage_Loaded"
+    NavigationPage.HasBackButton="False"
+    mc:Ignorable="d">
+    <VerticalStackLayout>
+        <ScrollView HorizontalScrollBarVisibility="Always" VerticalScrollBarVisibility="Always">
+            <VerticalStackLayout
+                x:Name="gdash"
+                Padding="10,0"
+                Spacing="10">
+                <HorizontalStackLayout
+                    HorizontalOptions="End"
+                    IsVisible="true"
+                    Spacing="8">
+                    <Label Text="Theme" VerticalTextAlignment="Center" />
+                    <RadioButton
+                        x:Name="lightThemeRadioButton"
+                        CheckedChanged="lightThemeRadioButton_CheckedChanged"
+                        Content="Light"
+                        GroupName="theme"
+                        MinimumWidthRequest="80" />
+                    <RadioButton
+                        x:Name="darkThemeRadioButton"
+                        CheckedChanged="darkThemeRadioButton_CheckedChanged"
+                        Content="Dark"
+                        GroupName="theme"
+                        MinimumWidthRequest="80" />
+                </HorizontalStackLayout>
+                <!--  Dashboard UI  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button FontSize="Caption"
+                        x:Name="btnfly"
+                        Grid.Column="0" HorizontalOptions="End"
+                        Clicked="btn_fly"
+                        CornerRadius="0"
+                        Text="≡" />
+                    <Grid Grid.Column="2">
+                        <Label
+                            x:Name="lbldstitle"
+                            FontSize="16"
+                            HorizontalOptions="Center"
+                            SemanticProperties.Description="Welcome to Younique Technology"
+                            SemanticProperties.HeadingLevel="Level3" />
+                        <Image
+                            x:Name="piclogload"
+                            HorizontalOptions="End"
+                            IsAnimationPlaying="False"
+                            MaximumHeightRequest="30"
+                            MaximumWidthRequest="30"
+                            Source="load.jpg" />
+                    </Grid>
+
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition x:Name="colfly" Width="0" />
+                        <ColumnDefinition x:Name="colbtn" Width="20" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <VerticalStackLayout
+                        x:Name="gdflyout"
+                        Grid.Column="0"
+                        Spacing="10">
+                        <Image
+                            MaximumHeightRequest="80"
+                            MaximumWidthRequest="100"
+                            Source="profpic.png" />
+                        <Label
+                            x:Name="lblfname"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding uname}" />
+                        <Button
+                            x:Name="btnprof"
+                            Clicked="btnprof_Clicked"
+                            Text="Profile" />
+                        <Button
+                            x:Name="btnbus"
+                            Clicked="btnbus_Click"
+                            AutomationId="1"
+                            Text="Business" />
+                        <Button
+                            x:Name="btnotf"
+                            Clicked="btnotf_Clicked"
+                            Text="Notification / Messages" />
+                        <Button Text="Users" AutomationId="2"                   
+                                Clicked="btnus_Click"/>
+                        <Button
+                            x:Name="btnlog"
+                            Clicked="btnlog_Clicked"
+                            Text="Logout" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Grid.Column="1" />
+                    <VerticalStackLayout x:Name="gdmain" Grid.Column="3">
+                        <Label
+                            x:Name="lblmenu"
+                            FontSize="Title"
+                            HorizontalTextAlignment="Center"
+                            Text="Profile" />
+                        <SearchBar Placeholder="Search" x:Name="txtsearch"/>
+                        <VerticalStackLayout x:Name="gdprof" Spacing="10">
+                            <Entry x:Name="txtfname" Placeholder="Full Name" />
+                            <Entry x:Name="txtmail" Placeholder="Email Address" />
+                            <Entry x:Name="txtphone" Placeholder="Phone no." />
+                            <Button
+                                x:Name="btnprofup"
+                                Clicked="btnupdateprof_Clicked"
+                                Text="Update Profile Details" />
+                            <Entry
+                                x:Name="txtoldp"
+                                IsPassword="True"
+                                Placeholder="Old Password" />
+                            <Entry
+                                x:Name="txtnp"
+                                IsPassword="True"
+                                Placeholder="New Password" />
+                            <Entry
+                                x:Name="txtcp"
+                                IsPassword="True"
+                                Placeholder="Confirm Password" />
+                            <Button
+                                x:Name="btnprofpass"
+                                Clicked="btnprofpass_Clicked"
+                                Text="Change Password" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout
+                            x:Name="gdmsg"
+                            Grid.Column="3"
+                            Spacing="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <CollectionView x:Name="colimg" Grid.Column="0" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <ListView
+                                    x:Name="lstmsgpics"
+                                    Grid.Column="0"
+                                    ItemSelected="lstmsgpics_ItemSelected" />
+                                <ListView x:Name="lstfname" Grid.Column="1" />
+                                <ListView x:Name="lstdet" Grid.Column="2" />
+                            </Grid>
+                            <TableView x:Name="tblmsg" Intent="Data">
+                                <TableSection x:Name="tblsec" />
+                            </TableView>
+                            <Label x:Name="lblmsg" />
+                            <Grid>
+                                <Picker x:Name="pickusers" />
+                            </Grid>
+                        </VerticalStackLayout>
+                        <VerticalStackLayout x:Name="gdbus" Spacing="10">
+                            <ScrollView HeightRequest="200">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <VerticalStackLayout Grid.Column="0" Spacing="10">
+                                        <Label FontSize="Subtitle" Text="Business Name" x:Name="lblcol1"/>
+                                        <Entry
+                                            x:Name="txtbn1"
+                                            AutomationId="0"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Name" />
+                                        <Entry
+                                            x:Name="txtbn2"
+                                            AutomationId="1"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Name" />
+                                        <Entry
+                                            x:Name="txtbn3"
+                                            AutomationId="2"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Name" />
+                                        <Entry
+                                            x:Name="txtbn4"
+                                            AutomationId="btn3"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Name" />
+                                        <Entry
+                                            x:Name="txtbn5"
+                                            AutomationId="4"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Name" />
+                                        <Entry
+                                            x:Name="txtbn6"
+                                            AutomationId="5"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Name" />
+                                        <Entry
+                                            x:Name="txtbn7"
+                                            AutomationId="6"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Name" />
+                                        <Entry
+                                            x:Name="txtbn8"
+                                            AutomationId="7"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Name" />
+                                        <Entry
+                                            x:Name="txtbn9"
+                                            AutomationId="8"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Name" />
+                                        <Entry
+                                            x:Name="txtbn10"
+                                            AutomationId="9"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Name" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1" Spacing="10">
+                                        <Label FontSize="Subtitle" Text="Business Category" x:Name="lblcol2"/>
+                                        <Entry
+                                            x:Name="txtbc1"
+                                            AutomationId="0"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Category" />
+                                        <Entry
+                                            x:Name="txtbc2"
+                                            AutomationId="1"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Category" />
+                                        <Entry
+                                            x:Name="txtbc3"
+                                            AutomationId="2"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Category" />
+                                        <Entry
+                                            x:Name="txtbc4"
+                                            AutomationId="3"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Category" />
+                                        <Entry
+                                            x:Name="txtbc5"
+                                            AutomationId="4"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Category" />
+                                        <Entry
+                                            x:Name="txtbc6"
+                                            AutomationId="5"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Category" />
+                                        <Entry
+                                            x:Name="txtbc7"
+                                            AutomationId="6"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Category" />
+                                        <Entry
+                                            x:Name="txtbc8"
+                                            AutomationId="7"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Category" />
+                                        <Entry
+                                            x:Name="txtbc9"
+                                            AutomationId="8"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Category" />
+                                        <Entry
+                                            x:Name="txtbc10"
+                                            AutomationId="9"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Business Category" />
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="2" Spacing="10">
+                                        <Label FontSize="Subtitle" Text="Date Created" x:Name="lblcol3"/>
+                                        <Entry
+                                            x:Name="txtbndat1"
+                                            AutomationId="0"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Date Created" />
+                                        <Entry
+                                            x:Name="txtbndat2"
+                                            AutomationId="1"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Date Created" />
+                                        <Entry
+                                            x:Name="txtbndat3"
+                                            AutomationId="2"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Date Created" />
+                                        <Entry
+                                            x:Name="txtbndat4"
+                                            AutomationId="3"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Date Created" />
+                                        <Entry
+                                            x:Name="txtbndat5"
+                                            AutomationId="4"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Date Created" />
+                                        <Entry
+                                            x:Name="txtbndat6"
+                                            AutomationId="5"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Date Created" />
+                                        <Entry
+                                            x:Name="txtbndat7"
+                                            AutomationId="6"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Date Created" />
+                                        <Entry
+                                            x:Name="txtbndat8"
+                                            AutomationId="7"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Date Created" />
+                                        <Entry
+                                            x:Name="txtbndat9"
+                                            AutomationId="8"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Date Created" />
+                                        <Entry
+                                            x:Name="txtbndat10"
+                                            AutomationId="9"
+                                            Focused="txtbn_Focused"
+                                            IsReadOnly="True"
+                                            Placeholder="Date Created" />
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </ScrollView>
+                            <Grid x:Name="dtgbus" />
+                            <Entry x:Name="txtbusname" Placeholder="Business Name" />
+                            <Picker x:Name="picbus" />
+                            <Entry x:Name="txtbusinfo" Placeholder="Info: About the business" />
+                            <HorizontalStackLayout Spacing="10">
+                                <Button Text="Suspend" />
+                                <Button
+                                    x:Name="BtnBusAdd"
+                                    Clicked="BtnBusAdd_Clicked"
+                                    Text="Add" />
+                                <Button Clicked="BtnBusUpdate" Text="Save" x:Name="BtnBusUpdt"/>
+                                <Button Text="Launch" Clicked="btnlaunch_clicked" x:Name="btnlaunch"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </VerticalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
+        </ScrollView>
+    </VerticalStackLayout>
+</ContentPage>
+
